@@ -7,7 +7,7 @@ use nickel::{Nickel, HttpRouter, Request, Response, MiddlewareResult};
 fn main() {
     let mut server = Nickel::new();
     server.get("**", handle);
-    server.listen("127.0.0.1:8080").unwrap();
+    server.listen("0.0.0.0:8080").unwrap();
 }
 
 fn handle<'mw>(_req: &mut Request, res: Response<'mw>) -> MiddlewareResult<'mw> {
@@ -16,6 +16,7 @@ fn handle<'mw>(_req: &mut Request, res: Response<'mw>) -> MiddlewareResult<'mw> 
         map.insert(var.0, var.1);
     }
 
-    let s = serde_yaml::to_string(&map).unwrap();
+    let mut s = serde_yaml::to_string(&map).unwrap();
+    s.push_str("\n");
     res.send(s)
 }
