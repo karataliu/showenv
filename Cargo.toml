@@ -1,0 +1,6 @@
+[package]
+name = "showenv"
+version = "0.1.0"
+authors = ["Dong Liu <doliu@microsoft.com>"]
+
+[dependencies]
